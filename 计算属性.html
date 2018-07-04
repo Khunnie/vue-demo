@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性</title>
+</head>
+<body>
+	<div id="app">
+		{{fullNmae}}
+		{{age}}
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		//计算属性有一个缓存性质,只有当属性变化时它才会刷新
+		//methods没有缓存性质
+		var app = new Vue({
+			el:"#app",
+			data:{
+				firstName:"Nichkhun",
+				lastName:"Khun",
+				fullNmae:"NichkhunKhun",
+				age:"18"
+			},
+			// 监听
+		
+			// methods:{
+			// 	fullNmae:function(){
+			// 		console.log("计算了一次")
+			// 		return this.firstName + "" +this.lastName
+			// 	}
+			// }
+			// // 计算属性
+			computed:{
+				fullNmae:function(){
+					console.log("计算了一次")
+					return this.firstName + "" +this.lastName
+				}
+			}
+		})
+	</script>
+</body>
+</html>

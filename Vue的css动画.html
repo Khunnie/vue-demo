@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VUE的css动画</title>
+	<style type="text/css">
+
+		.fade-enter{
+			opacity: 0;
+		}
+		.fade-enter-active{
+			transition: opacity 2s;
+		}
+		.fade-leave-to{
+			opacity: 0;
+		}
+		.fade-leave-active{
+			transition: opacity 2s;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<transition name="fade">
+			<div v-show="show">hello,world</div>
+		</transition>
+		
+		<button @click="handleClick">toggle</button>
+	</div>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+		//当一个元素被transition包裹，Vue会把这个元素当做动画，会为这个标签添加几个样式
+		//name=""的默认是v
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				show:true
+			},
+			methods:{
+				handleClick:function(){
+					this.show = !this.show
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

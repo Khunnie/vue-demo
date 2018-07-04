@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VUE的css动画</title>
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+<!-- 	<style type="text/css">
+		@keyframes bounce-in{
+			0%{
+				transform: scale(0);
+			}
+			50%{
+				transform: scale(1.5);
+			}
+			100%{
+				transform: scale(1);
+			}
+		}
+	
+		.active{
+			transform-origin: left center;
+			animation: bounce-in 1s;
+		}
+		.leave{
+			transform-origin: left center;
+			animation: bounce-in 1s reverse;
+		}
+
+	</style> -->
+</head>
+<body>
+	<div id="app">
+		<transition name="fade"
+					enter-active-class="animated swing"
+					leave-active-class="animated shake"
+		>
+			<div v-show="show">hello,world</div>
+		</transition>
+		
+		<button @click="handleClick">toggle</button>
+	</div>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+		//enter-active-class="name"可以自定义class名
+		//enter-active-class="animated swing" 第一个是告诉我们引用animated库 使用swing动画
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				show:true
+			},
+			methods:{
+				handleClick:function(){
+					this.show = !this.show
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

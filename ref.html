@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ref</title>
+</head>
+<body>
+	<div id="app">
+		<counter ref="one" @change="changeClick"></counter>
+		<counter ref="two" @change="changeClick"></counter>
+		<div>{{total}}</div>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		//ref写在标签上时通过this.$refs.name获取的是一个Dom元素 写在一个组件上面时一个通过this.$refs.name获取的是子组件的一个引用
+		Vue.component('counter',{
+			template:'<div @click="handleClick">{{number}}</div>',
+			data:function(){
+				return{
+					number:0
+				}
+			},
+			methods:{
+				handleClick:function(){
+					this.number++
+					this.$emit('change')
+				}
+			}
+		})
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				total:0
+			},
+			methods:{
+				changeClick:function(){
+					return this.total = this.$refs.one.number+this.$refs.two.number
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

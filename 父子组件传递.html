@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父子组件传递</title>
+</head>
+<body>
+	<div id="app">
+		<counter count="0" @change="changeClick"></counter>
+		<counter count="1" @change="changeClick"></counter>
+		<div>{{total}}</div>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		//count传给子组件值
+		//父组件可以向子组件传递参数，但是自组卷不能反过来修改子组件传过来的参数
+		//父组件向子组件传值，子组件通过props接收，子组件向父组件传值通过$emit(事件)，父组件通过@事件监听
+		var counter = {
+			props:['count'],
+			data:function(){
+				return{
+					number:this.count//把值赋给自己的值 克隆
+				}
+			},
+			template:"<div @click='handleClick'>{{number}}</div>",
+			methods:{
+				handleClick:function(){
+					this.number ++;
+					this.$emit('change',1)
+				}
+			}
+
+		}
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				total:1	
+			},
+			components:{
+				counter:counter
+			},
+			methods:{
+				changeClick:function(step){
+					this.total += step
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>

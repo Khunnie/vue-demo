@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>在Vue中使用插槽</title>
+</head>
+<body>
+	<div id="app">
+		<bodycontent>
+			<div class="header" slot='header'>header</div>
+			<div class="footer" slot='footer'>footer</div>
+		</bodycontent>
+			
+		
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		//父组件向子组件传Dom结构
+		//具名插槽 slot="name" <slot name="name">
+		Vue.component('bodycontent',{
+
+			template:'<div><slot name="header"></slot><div>this.content</div><slot name="footer"></slot></div>'
+						
+		})
+		var vm = new Vue({
+			el:"#app"
+		})
+	</script>
+</body>
+</html>

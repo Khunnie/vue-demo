@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性</title>
+</head>
+<body>
+	<div id="app">
+		{{fullNmae}}
+		{{age}}
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		//get取值的时候会执行
+		//set通过设置一个值改变相关联的值
+		var app = new Vue({
+			el:"#app",
+			data:{
+				firstName:"Nichkhun",
+				lastName:"Khun",
+				age:"18"
+			},
+			computed:{
+				fullNmae:{
+					get:function(){
+						return this.firstName + "" +this.lastName
+					},
+					set:function(value){
+						var arr = value.split("");
+						this.firstName = arr[0];
+						this.lastName = arr[1];
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

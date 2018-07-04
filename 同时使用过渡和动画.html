@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VUE的css动画</title>
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<style type="text/css">
+		.fade-enter,.fade-leave-to{
+			opacity: 0;
+		}
+		.fade-enter-active,.fade-leave-active{
+			transition: opacity 2s;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<transition 
+	
+			name="fade"
+			appear
+			enter-active-class="animated swing fade-enter-active"
+			leave-active-class="animated shake fade-leave-active"
+			appear-active-class="animated swing "
+		>
+			<div v-show="show">hello,world</div>
+		</transition>
+		
+		<button @click="handleClick">toggle</button>
+	</div>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+		//enter-active-class="name"可以自定义class名
+		//enter-active-class="animated swing" 第一个是告诉我们引用animated库 使用swing动画
+		//appear ppear-active-class="animated swing" 第一刷新的时候也有动画 
+		//type="transition"以transition动画时长为主
+		//:duration:来手动设置动画时长
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				show:true
+			},
+			methods:{
+				handleClick:function(){
+					this.show = !this.show
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

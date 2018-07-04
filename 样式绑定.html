@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性</title>
+	<style type="text/css">
+		.activated{
+			color: red
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="app">
+		<div @click="handleDivClick"
+			:class="{activated:isActivated}"
+		>Nichkhun
+		</div>	
+	</div> -->
+	<div id="app">
+		<div
+			:style="styleObj"
+			@click="handleClick"
+		>
+			你好啊
+		</div>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		// :class="{activated:isActivated}" 意思是我这个元素身上有个class,activeated取决于isActivated是true还是false
+		// var app = new Vue({
+		// 	el:"#app",
+		// 	data:{
+		// 		isActivated:false
+		// 	},
+		// 	methods:{
+		// 		handleDivClick:function(){
+		// 			this.isActivated = !this.isActivated;
+		// 		}
+		// 	}
+			
+		// })
+		var app = new Vue({
+			el:"#app",
+			data:{
+				styleObj:{
+					color:"3000"
+				}
+			},
+			methods:{
+				handleClick:function(){
+					this.styleObj.color = this.styleObj.color ==="#000" ? "red" :"#000";
+				}
+			}
+		})
+	</script>
+</body>
+</html>

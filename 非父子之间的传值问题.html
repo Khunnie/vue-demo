@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>非父子之间的传值问题</title>
+</head>
+<body>
+	<div id="app">
+		<child content="Nichkhun"></child>
+		<child content="帅"></child>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+	//mounted生命周期钩子
+		Vue.prototype.bus = new Vue()//每个组件上都有bus这个属性
+		Vue.component('child',{
+			data:function(){
+				return {
+					seltcontent:this.content
+				}
+			},
+			props:{
+				content:String
+			},
+			template:"<div @click='handleClick'>{{seltcontent}}</div>",
+			methods:{
+				handleClick:function(){
+					this.bus.$emit('change',this.seltcontent)
+				}
+			},
+			mounted:function(){
+				var _this = this
+				this.bus.$on('change',function(msg){
+					_this.seltcontent = msg
+				})
+			}
+		})
+		var app = new Vue({
+			el:"#app",
+			methods:{
+				handleClick:function(){
+					alert('handleClick')
+				}
+			}
+		})
+	</script>
+</body>
+</html>

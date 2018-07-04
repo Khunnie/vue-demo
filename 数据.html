@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据</title>
+</head>
+<body>
+	<div id="app">
+		<template v-for="(item,index) of list" 
+			:key="item.id">
+			<div>
+				{{item.text}}---{{index}}
+			</div>
+			<span>
+				{{item.text}}
+			</span>
+		</template>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		// (item,index) 第一个是内容 第二个是坐标
+		//key值是唯一的 尽量不要使用index 提高性能
+		//添加数据的时候不能通过下标进行改变  只能通过vue提供的7个变异方法
+		//pop把数组最后一个删除掉
+		//push数组添加一个
+		//shift 可以把数组第一项删除
+		//unshift 把数组第一项加内容
+		//splice 数组截取
+		//sort 数组排序
+		//reverse 数组取反
+		//template 占位符 可以帮我们包裹元素但不会渲染在页面上
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				list:[{
+					id:"001",
+					text:"nichkhun"
+				},{
+					id:"002",
+					text:"very"
+				},{
+					id:"003",
+					text:"nice"
+				}]
+			}
+		})
+	</script>
+</body>
+</html>

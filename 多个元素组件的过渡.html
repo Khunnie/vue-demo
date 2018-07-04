@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js动画</title>
+	<style type="text/css">
+		.fase-enter,.fade-leave-to{
+			opacity: 0;
+		}
+		.fade-enter-active,.fade-leave-active{
+			transition: opacity 1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<transition name="fade" 
+					mode="out-in"
+			>
+			<!-- <child v-if="show">hello,world</child>
+			<child-one v-else>Bye world</child-one> -->
+			<component :is="type"></component>
+		</transition>
+		
+		<button @click="handleClick">toggle</button>
+	</div>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/velocity.min.js"></script>
+	<script>
+	//mode="out-in"先隐藏再显示
+	
+		Vue.component('child',{
+			template:"<div>child</div>"
+		})
+		Vue.component('child-one',{
+			template:"<div>child-one</div>"
+		})
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				type:'child'
+			},
+			methods:{
+				handleClick:function(){
+					this.type = this.type === "child" ? "child-one" : "child"
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>
